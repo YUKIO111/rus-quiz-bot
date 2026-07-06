@@ -1,5 +1,5 @@
 # questions.py
-# Savollar bazasi: 0 dan PRO gacha, 6 bo'lim.
+# Savollar bazasi: 0 dan PRO gacha, 7 bo'lim.
 # Yangi savol qo'shish uchun kerakli ro'yxatga yangi dict qo'shing.
 
 CATEGORIES = {
@@ -9,6 +9,7 @@ CATEGORIES = {
     "gram_b": "📗 Grammatika — A2–B2",
     "talaffuz": "🗣 Talaffuz",
     "suhbat": "💬 Jonli so'zlashuv",
+    "dialog": "🗨 Real muloqot (PRO)",
 }
 
 QUESTIONS = {
@@ -73,5 +74,21 @@ QUESTIONS = {
         {"savol": "«Спасибо» ga qanday javob beriladi?", "variantlar": ["Привет", "Не за что / Пожалуйста", "Пока", "Давай"], "togri": 1, "izoh": "Не за что — arzimaydi. Пожалуйста ham bo'ladi."},
         {"savol": "«Ну» so'zi nutqda qanday vazifa bajaradi?", "variantlar": ["Savol beradi", "To'ldiruvchi so'z («xo'sh» kabi)", "Inkor qiladi", "Buyruq beradi"], "togri": 1, "izoh": "Ну — слово-паразит: «xo'sh, eee» kabi. Nutqni tabiiy qiladi."},
         {"savol": "«Блин!» undovi nimani bildiradi?", "variantlar": ["Quymoq (taom)", "Attang! / Eh! (yumshoq afsus)", "Salom", "Juda zo'r"], "togri": 1, "izoh": "So'zma-so'z «quymoq», lekin undov sifatida «attang!». Yumshoq, lekin rasmiy joyda ishlatmang."},
+    ],
+    "dialog": [
+        {"savol": "Ko'chada notanish odamdan biror narsa so'rashdan oldin nima deysiz?", "variantlar": ["Эй, ты!", "Извините, пожалуйста...", "Иди сюда!", "Слушай меня"], "togri": 1, "izoh": "Извините, пожалуйста — muloyim murojaat. Ruslar suhbatni aynan shunday boshlaydi."},
+        {"savol": "«Как пройти к метро?» nimani bildiradi?", "variantlar": ["Metro qachon ochiladi?", "Metroga qanday boriladi?", "Metro qayerda edi?", "Metro ishlayaptimi?"], "togri": 1, "izoh": "Yo'l so'rashning eng keng tarqalgan shakli. Javob: Идите прямо, потом направо — to'g'ri yuring, keyin o'ngga."},
+        {"savol": "Do'konda narxni qanday so'raysiz?", "variantlar": ["Сколько это стоит?", "Где деньги?", "Что это такое?", "Дай мне это"], "togri": 0, "izoh": "Сколько (это) стоит? — bu qancha turadi? Qisqa varianti: Сколько?"},
+        {"savol": "Kafeda qanday buyurtma berasiz?", "variantlar": ["Хочу есть!", "Мне, пожалуйста, кофе", "Дай кофе", "Кофе где?"], "togri": 1, "izoh": "Мне, пожалуйста, ... — eng muloyim buyurtma shakli. Oxirida: Спасибо!"},
+        {"savol": "Ruslar telefon ko'targanda odatda nima deydi?", "variantlar": ["Привет, кто это?!", "Алло! / Слушаю", "Говорите быстро", "Здравствуй, товарищ"], "togri": 1, "izoh": "Алло yoki Слушаю (eshitaman) — telefondagi standart javob."},
+        {"savol": "Tanishtirilgandan keyin nima deyiladi?", "variantlar": ["Очень приятно", "До свидания", "Не за что", "Ну ладно"], "togri": 0, "izoh": "Очень приятно — «tanishganimdan xursandman». To'liq: Очень приятно познакомиться."},
+        {"savol": "«Как дела?» ga eng TABIIY javob qaysi?", "variantlar": ["Да", "Нормально, а у тебя?", "Спасибо", "Я студент"], "togri": 1, "izoh": "Нормально, а у тебя? — yaxshi, o'zingchi? Qarshi savol berish muloqotni tabiiy qiladi."},
+        {"savol": "Taklifga xursandchilik bilan rozilik qaysi?", "variantlar": ["С удовольствием!", "Не за что", "Ничего себе", "Может быть, нет"], "togri": 0, "izoh": "С удовольствием! — jon deb! / mamnuniyat bilan."},
+        {"savol": "Gapni tushunmay qolsangiz nima deysiz?", "variantlar": ["Молчи!", "Повторите, пожалуйста, я не понял", "Всё, хватит", "Неважно"], "togri": 1, "izoh": "Повторите, пожалуйста — qaytaring, iltimos. Yana: Говорите медленнее — sekinroq gapiring."},
+        {"savol": "«Можно спросить?» nimani bildiradi?", "variantlar": ["So'rasam maylimi?", "Sotib olsam bo'ladimi?", "Ketsam maylimi?", "Kirsam maylimi?"], "togri": 0, "izoh": "Можно...? — ruxsat so'rashning universal shakli: Можно войти? — kirsam maylimi?"},
+        {"savol": "Kechikkan odam «Извини, пробки!» desa, nima demoqchi?", "variantlar": ["Ishim ko'p edi", "Yo'lda tirbandlik edi", "Uxlab qoldim", "Unutibman"], "togri": 1, "izoh": "Пробка — so'zma-so'z «tiqin», so'zlashuvda — yo'l tirbandligi. Eng ko'p eshitiladigan bahona 😄"},
+        {"savol": "Do'stlar bilan norasmiy xayrlashuv qaysi?", "variantlar": ["До свидания, господин", "Пока! Увидимся!", "Прощайте навсегда", "Всего доброго, коллеги"], "togri": 1, "izoh": "Пока — xayr (do'stona), Увидимся — ko'rishamiz. Rasmiy: До свидания."},
+        {"savol": "«Что ты имеешь в виду?» nimani bildiradi?", "variantlar": ["Nimani ko'ryapsan?", "Nima demoqchisan?", "Qayerga qarayapsan?", "Nima xohlaysan?"], "togri": 1, "izoh": "Иметь в виду — nazarda tutmoq. Suhbatda aniqlik kiritish uchun juda kerak ibora."},
+        {"savol": "Mehmonga kelgan odamga ruslar nima deydi?", "variantlar": ["Проходите, садитесь!", "Стой там!", "Зачем пришёл?", "Плати сначала"], "togri": 0, "izoh": "Проходите, садитесь — kiring, o'tiring. Yana: Чувствуй себя как дома — o'z uyingdek his qil."},
     ],
 }
