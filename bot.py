@@ -1,6 +1,6 @@
-# bot.py — v2
+# bot.py — v3
 # Yangiliklar: bitta xabarda ishlaydi (chat toza qoladi), HTML format,
-# progress bar, daraja (rank) tizimi, "Keyingi savol" tugmasi.
+# progress bar, daraja (rank) tizimi, ⛩ anime testi va 📕 anime lug'ati.
 import asyncio
 import json
 import logging
@@ -18,7 +18,7 @@ from aiogram.types import (
     Message,
 )
 
-from questions import CATEGORIES, QUESTIONS
+from questions import ANIME_LUGAT, CATEGORIES, QUESTIONS
 
 logging.basicConfig(level=logging.INFO)
 
@@ -82,6 +82,9 @@ def main_menu() -> InlineKeyboardMarkup:
         for key, title in CATEGORIES.items()
     ]
     rows.append(
+        [InlineKeyboardButton(text="📕 Anime lug'ati (so'zlar ro'yxati)", callback_data="lugat")]
+    )
+    rows.append(
         [InlineKeyboardButton(text="📊 Natijalarim va darajam", callback_data="stats")]
     )
     return InlineKeyboardMarkup(inline_keyboard=rows)
@@ -96,6 +99,45 @@ async def cmd_start(message: Message) -> None:
 async def back_to_menu(call: CallbackQuery) -> None:
     await call.answer()
     await call.message.edit_text(menu_text(), reply_markup=main_menu())
+
+
+# ---------- Anime lug'ati ----------
+
+@dp.callback_query(F.data == "lugat")
+async def show_lugat_menu(call: CallbackQuery) -> None:
+    rows = [
+        [InlineKeyboardButton(text=sec["nom"], callback_data=f"lug:{key}")]
+        for key, sec in ANIME_LUGAT.items()
+    ]
+    rows.append([InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu")])
+    await call.answer()
+    await call.message.edit_text(
+        f"⛩ <b>Anime lug'ati</b>\n{LINE}\n"
+        "Rus dublyajli anime'da eng ko'p ishlatiladigan so'zlar.\n"
+        "Bo'limni tanlang:",
+        reply_markup=InlineKeyboardMarkup(inline_keyboard=rows),
+    )
+
+
+@dp.callback_query(F.data.startswith("lug:"))
+async def show_lugat_section(call: CallbackQuery) -> None:
+    key = call.data.split(":", 1)[1]
+    sec = ANIME_LUGAT.get(key)
+    if not sec:
+        await call.answer("Bo'lim topilmadi", show_alert=True)
+        return
+    words = "\n".join(f"▫️ <b>{ru}</b> — {uz}" for ru, uz in sec["sozlar"])
+    kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="⬅️ Lug'at bo'limlari", callback_data="lugat")],
+            [InlineKeyboardButton(text="🏠 Bosh menyu", callback_data="menu")],
+        ]
+    )
+    await call.answer()
+    await call.message.edit_text(
+        f"{sec['nom']}\n{LINE}\n{words}",
+        reply_markup=kb,
+    )
 
 
 # ---------- Test ----------
